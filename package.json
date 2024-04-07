@@ -1,0 +1,24 @@
+{
+  "name": "poop-cleaner",
+  "version": "0.1.0",
+  "description": "A superhero bot that saves group chats from shitty spam reported by good members",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/derogab/poop-cleaner.git"
+  },
+  "keywords": [
+    "telegram-bot",
+    "spam-cleaner"
+  ],
+  "author": "derogab",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/derogab/poop-cleaner/issues"
+  },
+  "homepage": "https://github.com/derogab/poop-cleaner#readme"
+}
