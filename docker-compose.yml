@@ -1,0 +1,30 @@
+version: '3'
+
+volumes:
+  poop-cleaner-data:
+
+networks:
+  poop-cleaner-network:
+    name: poop-cleaner-network
+    driver: bridge
+
+services:
+
+  poop-cleaner-data:
+    restart: always
+    container_name: poop-cleaner-data
+    image: redis:7.2.4-alpine
+    command: redis-server --save 20 1 --loglevel warning
+    volumes:
+      - poop-cleaner-data:/data
+    networks:
+      - poop-cleaner-network  
+  
+  poop-cleaner-app:
+    restart: always
+    container_name: poop-cleaner-app
+    build: .
+    env_file:
+      - .env
+    networks:
+      - poop-cleaner-network 
