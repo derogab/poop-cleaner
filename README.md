@@ -12,6 +12,12 @@
   </a>
 </p>
 
+### Bot
+First of all you need to create a bot with [BotFather](https://t.me/BotFather).  
+Then, you need to:
+- disable _privacy mode_ for the bot (through Bot Father), to allow the bot to read all messages.
+- add the bot to your group as admin (only _deletion_ permission required).
+
 ### Configuration
 Copy [.env.sample](./.env.sample) in `.env` and edit the file with own configs.
 
@@ -23,14 +29,12 @@ POOP_THRESHOLD=10
 ```
 
 ### Usage
-First of all you need to create a bot with [BotFather](https://t.me/BotFather).  
-Then, the easiest way to use the bot is via the [docker compose](./docker-compose.yml) file.  
-When ready, run:
-
+The easiest way to use the bot is via the [docker compose](./docker-compose.yml) file. When ready, run:
 ```
 docker compose up -d 
 ```
-### Tips
+
+### Tip
 If you like this project or directly benefit from it, please consider buying me a coffee:  
 🔗 `bc1qd0qatgz8h62uvnr74utwncc6j5ckfz2v2g4lef`  
 ⚡️ `derogab@sats.mobi`  
