@@ -25,6 +25,9 @@ services:
     restart: always
     container_name: poop-cleaner-app
     build: .
+    environment:
+      - REDIS_HOST=poop-cleaner-data
+      - REDIS_PORT=6379
     env_file:
       - .env
     networks:
