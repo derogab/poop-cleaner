@@ -24,7 +24,7 @@ services:
   poop-cleaner-app:
     restart: always
     container_name: poop-cleaner-app
-    build: .
+    image: derogab/poop-cleaner:latest
     environment:
       - REDIS_HOST=poop-cleaner-data
       - REDIS_PORT=6379
