@@ -1,7 +1,6 @@
 {
   "WELCOME_MSG": "Benvenuto su *Poop Cleaner Bot*! 🧹",  
   "HELP_MSG": "_Poop Cleaner Bot_ è un bot che ti aiuta a gestire lo spam su un gruppo telegram, grazie al supporto dei membri del gruppo stesso. Quando un messaggio ottiene un numero prestabilito di reazioni di tipo \"💩\" il bot elimina il messaggio dal gruppo.\n\nComandi:\n/start - Avvia il bot.\n/help - Mostra questo messaggio di aiuto.\n/auth - Mostra informazioni autenticate.\n\nUtilizzo:\nReagisci con 💩 ai messaggi che consideri spam e credi debbano essere eliminati.",
-  "AUTH_MSG_ADMIN": "✅ *Autenticato come admin*\n\n",
-  "AUTH_MSG_NO_ADMIN": "❌ *Non sei amministratore*\n\n"
-    
+  "AUTH_MSG_ADMIN": "✅ *Autenticato con successo*\n\nAmministratore: @{username}\nSoglia: `{threshold}` reazioni per l'eliminazione\n\nModalità Debug: `{debug}`",
+  "AUTH_MSG_NO_ADMIN": "❌ *Non sei amministratore*"
 }

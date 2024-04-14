@@ -39,9 +39,12 @@ const getJson = function(locale) {
  * 
  * @param {string} locale the locale to get the JSON object for.
  * @param {string} key the key representing the string to get.
+ * @param {string[]} params the parameters to replace in the string.
  * @returns {string} the string for the given key and locale.
  */
-exports.get = function(locale, key) {
+exports.get = function(locale, key, params = []) {
   // Return the correct string for the given key and locale.
-  return getJson(locale)[key];
+  return getJson(locale)[key].replace(/{([^}]*)}/g, function(match, number) {
+    return typeof params[number] != 'undefined' ? params[number] : match;
+  });
 };

@@ -59,7 +59,11 @@ const auth = exports.auth = async function(ctx) {
   // Check if the user is the admin.
   if (ctx.update.message.from.username === process.env.ADMIN_USERNAME) {
     // If admin, replace the message with the auth message.
-    msg = strings.get(ctx.update.message.from.language_code, 'AUTH_MSG_ADMIN');
+    msg = strings.get(ctx.update.message.from.language_code, 'AUTH_MSG_ADMIN', {
+      debug: process.env.DEBUG ? 'YES' : 'NO',
+      username: process.env.ADMIN_USERNAME,
+      threshold: process.env.POOP_THRESHOLD,
+    });
   }
   // Send the message.
   await ctx.reply(msg, { parse_mode: "Markdown" });
