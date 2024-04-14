@@ -3,6 +3,7 @@
  * 
  */
 const redis = require("redis");
+const logger = require("./logger");
 
 /**
  * Create a new Redis client instance.
@@ -18,11 +19,11 @@ exports.createRedisClient = async function(host, port) {
 
   // Define the Redis events.
   // See: https://github.com/redis/node-redis#events
-  redisClient.on('connect', () => console.log('Redis: connect'));
-  redisClient.on('ready', () => console.log('Redis: ready'));
-  redisClient.on('end', () => console.log('Redis: end'));
-  redisClient.on('error', (err) => console.err('Redis Error:', err));
-  redisClient.on('reconnecting', () => console.log('Redis: reconnecting'));
+  redisClient.on('connect', () => logger.info('Redis: connect'));
+  redisClient.on('ready', () => logger.info('Redis: ready'));
+  redisClient.on('end', () => logger.info('Redis: end'));
+  redisClient.on('error', (err) => logger.error('Redis Error:', err));
+  redisClient.on('reconnecting', () => logger.debug('Redis: reconnecting'));
 
   // Connect to the Redis server.
   await redisClient.connect();

@@ -3,6 +3,7 @@
  * 
  */
 const data = require("./data");
+const logger = require("./logger");
 
 /**
  * Environment 
@@ -33,7 +34,7 @@ exports.onReaction = async function(redisClient, ctx) {
     // Save that a user reacted with poop to a message.
     await data.save(redisClient, messageId, userId);
     // Log the event: poop added.
-    if (process.env.DEBUG) console.log('Poop emoji added to the message ', messageId, ' by ', userId);
+    logger.debug('Poop emoji added to the message ', messageId, ' by ', userId);
   }
 
   // Check if poop-emoji is removed from the message.
@@ -41,7 +42,7 @@ exports.onReaction = async function(redisClient, ctx) {
     // Remove that a user reacted with poop to a message.
     await data.remove(redisClient, messageId, userId);
     // Log the event: poop removed.
-    if (process.env.DEBUG) console.log('Poop emoji removed from the message ', messageId, ' by ', userId);
+    logger.debug('Poop emoji removed from the message ', messageId, ' by ', userId);
   }
 
   // Get the number of users who reacted with poop to the message.

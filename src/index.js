@@ -6,6 +6,7 @@ const { Bot } = require("grammy");
 const commands = require("./controllers/commands");
 const core = require("./controllers/core");
 const data = require("./controllers/data");
+const logger = require("./controllers/logger");
 
 /**
  * Environment 
@@ -50,7 +51,7 @@ bot.on("message_reaction", async (ctx) => core.onReaction(redisClient, ctx));
 /**
  * Launch
  */
-bot.start({ allowed_updates: ["message", "message_reaction"] }).then(() => console.log('Bot: up and running!'));
+bot.start({ allowed_updates: ["message", "message_reaction"] }).then(() => logger.info('Bot: up and running!'));
 
 // Enable graceful stop
 process.once('SIGINT', () => bot.stop('SIGINT'));
