@@ -4,6 +4,7 @@
  */
 const { Bot } = require("grammy");
 const commands = require("./controllers/commands");
+const core = require("./controllers/core");
 const data = require("./controllers/data");
 
 /**
@@ -44,36 +45,7 @@ bot.command("auth", commands.auth);
  * 
  * Listen for message reactions, count and make decisions.
  */
-bot.on("message_reaction", async (ctx) => {
-  // Get user id who reacted to the message.
-  const userId = '' + ctx.messageReaction.user.id;
-  // Get message (only receive the message identifier, not the message content).
-  const messageId = '' + ctx.messageReaction.message_id;
-  // Get reaction added or removed.
-  const { emojiAdded, emojiRemoved } = ctx.reactions();
-
-  // Check if poop-emoji is added to the message.
-  if (emojiAdded.includes("💩")) {
-    // Save that a user reacted with poop to a message.
-    await data.save(redisClient, messageId, userId);
-    // Log the event: poop added.
-    if (process.env.DEBUG) console.log('Poop emoji added to the message ', messageId, ' by ', userId);
-  }
-
-  // Check if poop-emoji is removed from the message.
-  if (emojiRemoved.includes("💩")) {
-    // Remove that a user reacted with poop to a message.
-    await data.remove(redisClient, messageId, userId);
-    // Log the event: poop removed.
-    if (process.env.DEBUG) console.log('Poop emoji removed from the message ', messageId, ' by ', userId);
-  }
-
-  // Get the number of users who reacted with poop to the message.
-  const poopCount = await data.get(redisClient, messageId, userId);
-  // Delete the message if the number of users who reacted with poop to the message is greater than the threshold.
-  if (poopCount >= process.env.POOP_THRESHOLD) await ctx.deleteMessage();
-
-});
+bot.on("message_reaction", async (ctx) => core.onReaction(redisClient, ctx));
 
 /**
  * Launch
