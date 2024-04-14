@@ -1,0 +1,6 @@
+{
+  "WELCOME_MSG": "Welcome to the *Poop Cleaner Bot*! 🧹",
+  "HELP_MSG": "_Poop Cleaner Bot_ is a bot that helps you manage spam on a telegram group, thanks to the support of group members. When a message gets a predetermined number of reactions of type \"💩\" the bot deletes the message from the group. \n\nCommands:\n/start - Start the bot.\n/help - Show this help message.\n/auth - Show authenticated info.\n\nUsage:\nReact with 💩 to messages that you consider spam and believe should be deleted.",
+  "AUTH_MSG_ADMIN": "✅ *Authenticated as admin*",
+  "AUTH_MSG_NO_ADMIN": "❌ *You are not the admin*"  
+}

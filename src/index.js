@@ -3,7 +3,8 @@
  * 
  */
 const { Bot } = require("grammy");
-const data = require("./data");
+const commands = require("./controllers/commands");
+const data = require("./controllers/data");
 
 /**
  * Environment 
@@ -28,6 +29,15 @@ const redisHost = process.env.REDIS_HOST || 'localhost';
 const redisPort = process.env.REDIS_PORT || 6379;
 let redisClient;
 (async () => { redisClient = await data.createRedisClient(redisHost, redisPort) })();
+
+/**
+ * Commands
+ * 
+ * Basic commands for the bot, for example, /start.
+ */
+bot.command("start", commands.start);
+bot.command("help", commands.help);
+bot.command("auth", commands.auth);
 
 /**
  * Reaction Listener
@@ -68,7 +78,7 @@ bot.on("message_reaction", async (ctx) => {
 /**
  * Launch
  */
-bot.start({ allowed_updates: ["message_reaction"] }).then(() => console.log('Bot: up and running!'));
+bot.start({ allowed_updates: ["message", "message_reaction"] }).then(() => console.log('Bot: up and running!'));
 
 // Enable graceful stop
 process.once('SIGINT', () => bot.stop('SIGINT'));
