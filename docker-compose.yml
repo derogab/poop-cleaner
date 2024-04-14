@@ -1,15 +1,16 @@
-version: '3'
-
+# Volumes are used to persist data between container restarts
 volumes:
   poop-cleaner-data:
 
+# Networks are used to connect containers
 networks:
   poop-cleaner-network:
     name: poop-cleaner-network
     driver: bridge
 
+# Services are the containers that will be run
 services:
-
+  # Poop Cleaner Data Service
   poop-cleaner-data:
     restart: always
     container_name: poop-cleaner-data
@@ -19,7 +20,7 @@ services:
       - poop-cleaner-data:/data
     networks:
       - poop-cleaner-network  
-  
+  # Poop Cleaner App Service
   poop-cleaner-app:
     restart: always
     container_name: poop-cleaner-app
