@@ -12,6 +12,10 @@
   </a>
 </p>
 
+### Info
+_Poop Cleaner Bot_ is a bot that helps you manage spam on a telegram group thanks to the support of group members. 
+When a message gets a predetermined number of reactions of type \"💩\" the bot deletes the message from the group.
+
 ### Bot
 First of all you need to create a bot with [BotFather](https://t.me/BotFather).  
 Then, you need to:
