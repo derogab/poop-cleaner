@@ -22,7 +22,7 @@ require('dotenv').config();
  */
 const getJson = function(locale) {
   // Return the correct JSON object for the given locale.
-  switch (locale.toLowerCase()) {
+  switch (locale) {
     case 'en':
       return intl_en;
     case 'it':
