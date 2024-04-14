@@ -27,6 +27,11 @@ BOT_TOKEN=here_your_telegram_bot_token
 DEBUG=0
 POOP_THRESHOLD=10
 ```
+  
+`ADMIN_USERNAME`: your personal telegram username.  
+`BOT_TOKEN`: the token of your telegram bot.  
+`DEBUG`: enable/disable debug mode (0 for False, 1 for True).  
+`POOP_THRESHOLD`: minimum number of reaction for deleting a message.
 
 ### Usage
 The easiest way to use the bot is via the [docker compose](./docker-compose.yml) file. When ready, run:
