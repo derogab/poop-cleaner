@@ -2,6 +2,7 @@
  * Dependencies
  * 
  */
+const info = require("../package.json");
 const strings = require("../intl/strings");
 
 /**
@@ -26,8 +27,8 @@ exports.start = async function(ctx) {
   await ctx.reply(msg, { parse_mode: "Markdown" });
   // Send a help message.
   await help(ctx);
-  // Send an auth message, with instructions for the admin or info about the bot for other users.
-  await auth(ctx);
+  // Send the configs message with bot instance info.
+  await configs(ctx);
 };
 
 /**
@@ -42,29 +43,26 @@ const help = exports.help = async function(ctx) {
   // Init data.
   const msg = strings.get(ctx.update.message.from.language_code, 'HELP_MSG');
   // Send a help message.
-  await ctx.reply(msg, { parse_mode: "Markdown" });
+  await ctx.reply(msg, { parse_mode: "Markdown", link_preview_options: { is_disabled: true } });
 };
 
 /**
- * Auth
+ * Configs
  * 
- * A function that is called when the user sends the /auth command.
+ * A function that is called when the user sends the /configs command.
  * 
  * @param {import("grammy").CommandContext} ctx the context of the command.
  * @returns {Promise<void>} a promise that resolves when the operation is complete.
  */
-const auth = exports.auth = async function(ctx) {
+const configs = exports.configs = async function(ctx) {
   // Init message with default no-auth message.
-  let msg = strings.get(ctx.update.message.from.language_code, 'AUTH_MSG_NO_ADMIN');
-  // Check if the user is the admin.
-  if (ctx.update.message.from.username === process.env.ADMIN_USERNAME) {
-    // If admin, replace the message with the auth message.
-    msg = strings.get(ctx.update.message.from.language_code, 'AUTH_MSG_ADMIN', {
-      debug: process.env.DEBUG ? 'YES' : 'NO',
-      username: process.env.ADMIN_USERNAME,
-      threshold: process.env.POOP_THRESHOLD,
-    });
-  }
+  const msg = strings.get(ctx.update.message.from.language_code, 'CONFIGS_MSG', {
+    debug: process.env.DEBUG ? 'ON' : 'OFF',
+    username: process.env.ADMIN_USERNAME ? process.env.ADMIN_USERNAME : "N/A",
+    threshold: process.env.POOP_THRESHOLD,
+    version: "v" + info.version,
+    is_admin: ctx.update.message.from.username === process.env.ADMIN_USERNAME ? "✔️" : "",
+  });
   // Send the message.
   await ctx.reply(msg, { parse_mode: "Markdown" });
 };
