@@ -22,7 +22,7 @@ require('dotenv').config();
  */
 exports.start = async function(ctx) {
   // Init data.
-  const msg = strings.get(ctx.update.message.from.language_code, 'WELCOME_MSG');
+  const msg = strings.get(ctx.update.message.from.language_code, 'MSG_WELCOME');
   // Send a welcome message.
   await ctx.reply(msg, { parse_mode: "Markdown" });
   // Send a help message.
@@ -41,7 +41,7 @@ exports.start = async function(ctx) {
  */
 const help = exports.help = async function(ctx) {
   // Init data.
-  const msg = strings.get(ctx.update.message.from.language_code, 'HELP_MSG');
+  const msg = strings.get(ctx.update.message.from.language_code, 'MSG_HELP');
   // Send a help message.
   await ctx.reply(msg, { parse_mode: "Markdown", link_preview_options: { is_disabled: true } });
 };
@@ -56,9 +56,9 @@ const help = exports.help = async function(ctx) {
  */
 const configs = exports.configs = async function(ctx) {
   // Init message with default no-auth message.
-  const msg = strings.get(ctx.update.message.from.language_code, 'CONFIGS_MSG', {
-    debug: process.env.DEBUG ? 'ON' : 'OFF',
-    username: process.env.ADMIN_USERNAME ? process.env.ADMIN_USERNAME : "N/A",
+  const msg = strings.get(ctx.update.message.from.language_code, 'MSG_CONFIGS', {
+    debug: process.env.DEBUG ? strings.get(ctx.update.message.from.language_code, 'ENABLED') : strings.get(ctx.update.message.from.language_code, 'DISABLED'),
+    username: process.env.ADMIN_USERNAME ? process.env.ADMIN_USERNAME : strings.get(ctx.update.message.from.language_code, 'UNKNOWN'),
     threshold: process.env.POOP_THRESHOLD,
     version: "v" + info.version,
     is_admin: ctx.update.message.from.username === process.env.ADMIN_USERNAME ? "✔️" : "",
