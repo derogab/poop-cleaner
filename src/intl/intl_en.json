@@ -1,8 +1,9 @@
 {
   "DISABLED": "disabled",
   "ENABLED": "enabled",
-  "MSG_WELCOME": "Welcome to the *Poop Cleaner Bot*! 🧹",
-  "MSG_HELP": "[Poop Cleaner Bot](https://github.com/derogab/poop-cleaner) is a bot that helps you manage spam on a telegram group, thanks to the support of group members. When a message gets a predetermined number of reactions of type \"💩\" the bot deletes the message from the group. \n\n\nCommands:\n/start - Start the bot.\n/help - Show this help message.\n/configs - Show instance configurations.\n\nUsage:\nReact with 💩 to messages that you consider spam and believe should be deleted.\n\n\nThe source code is available [on GitHub](https://github.com/derogab/poop-cleaner) under [MIT license](https://github.com/derogab/poop-cleaner/blob/master/LICENSE). To run a own instance you needs to follow simple [instructions](https://github.com/derogab/poop-cleaner?tab=readme-ov-file#configuration).",
   "MSG_CONFIGS": "⚙️ Instance configurations\n\n_Admin_: *@{username}* {is_admin}\n_Reactions for deletion_: `{threshold}`\n\n_Version_: `{version}`\n_Debug mode_: `{debug}`",
+  "MSG_DONATE": "If you benefit from this bot, consider offering a coffee ☕️\n\n👨🏻‍💻 @{dev} (bot maintainer)\n⚡️ `{dev_lightning_address}`\n\n👷🏻‍♂️ @{admin} (bot instance maintainer)\n⚡️ `{admin_lightning_address}`",
+  "MSG_HELP": "[Poop Cleaner Bot](https://github.com/derogab/poop-cleaner) is a bot that helps you manage spam on a telegram group, thanks to the support of group members. When a message gets a predetermined number of reactions of type \"💩\" the bot deletes the message from the group. \n\n\nCommands:\n/start - Start the bot.\n/help - Show this help message.\n/configs - Show instance configurations.\n/donate - Buy coffee for bot maintainers.\n\nUsage:\nReact with 💩 to messages that you consider spam and believe should be deleted.\n\n\nThe source code is available [on GitHub](https://github.com/derogab/poop-cleaner) under [MIT license](https://github.com/derogab/poop-cleaner/blob/master/LICENSE). To run a own instance you needs to follow simple [instructions](https://github.com/derogab/poop-cleaner?tab=readme-ov-file#configuration).",
+  "MSG_WELCOME": "Welcome to the *Poop Cleaner Bot*! 🧹",
   "UNKNOWN": "unknown"
 }

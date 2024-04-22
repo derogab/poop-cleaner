@@ -40,6 +40,7 @@ let redisClient;
 bot.command("start", commands.start);
 bot.command("help", commands.help);
 bot.command("configs", commands.configs);
+bot.command("donate", commands.donate);
 
 /**
  * Reaction Listener
