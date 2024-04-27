@@ -27,15 +27,17 @@ Copy [.env.sample](./.env.sample) in `.env` and edit the file with own configs.
 
 ```
 ADMIN_USERNAME=here_your_telegram_username
+ADMIN_LIGHTNING_ADDRESS=here_your_lightning_address
 BOT_TOKEN=here_your_telegram_bot_token
 DEBUG=0
 POOP_THRESHOLD=10
 ```
   
-`ADMIN_USERNAME`: your personal telegram username.  
-`BOT_TOKEN`: the token of your telegram bot.  
-`DEBUG`: enable/disable debug mode (0 for False, 1 for True).  
-`POOP_THRESHOLD`: minimum number of reaction for deleting a message.
+`ADMIN_USERNAME`: (optional) your personal telegram username.  
+`ADMIN_LIGHTNING_ADDRESS`: (optional) your personal lightning network address.  
+`BOT_TOKEN`: (mandatory) the token of your telegram bot.  
+`DEBUG`: (optional) enable/disable debug mode (0 for False, 1 for True).  
+`POOP_THRESHOLD`: (mandatory) minimum number of reaction for deleting a message.
 
 ### Usage
 The easiest way to use the bot is via the [docker compose](./docker-compose.yml) file. When ready, run:

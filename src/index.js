@@ -30,7 +30,6 @@ const bot = new Bot(process.env.BOT_TOKEN);
 const redisHost = process.env.REDIS_HOST || 'localhost';
 const redisPort = process.env.REDIS_PORT || 6379;
 let redisClient;
-(async () => { redisClient = await data.createRedisClient(redisHost, redisPort) })();
 
 /**
  * Commands
@@ -39,7 +38,8 @@ let redisClient;
  */
 bot.command("start", commands.start);
 bot.command("help", commands.help);
-bot.command("auth", commands.auth);
+bot.command("configs", commands.configs);
+bot.command("donate", commands.donate);
 
 /**
  * Reaction Listener
@@ -49,10 +49,25 @@ bot.command("auth", commands.auth);
 bot.on("message_reaction", async (ctx) => core.onReaction(redisClient, ctx));
 
 /**
- * Launch
+ * Execution
  */
-bot.start({ allowed_updates: ["message", "message_reaction"] }).then(() => logger.info('Bot: up and running!'));
+exports.execution = async function() {
+  // Init redis client.
+  redisClient = await data.createRedisClient(redisHost, redisPort);
+  // Run the bot.
+  bot.start({ allowed_updates: ["message", "message_reaction"] }).catch((err) => { logger.error(err); process.exit(1); });
+  // Log.
+  logger.info('Bot: up and running!');
+};
 
-// Enable graceful stop
-process.once('SIGINT', () => bot.stop('SIGINT'));
-process.once('SIGTERM', () => bot.stop('SIGTERM'));
+/**
+ * Graceful Stop
+ */
+exports.stop = async function(stopSignal) {
+  // Stop the bot.
+  bot.stop(stopSignal);
+  // Log.
+  logger.warning('Bot: stopped with signal ' + stopSignal + '.');
+  // Terminate process.
+  process.exit(0);
+};
