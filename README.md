@@ -33,8 +33,8 @@ DEBUG=0
 POOP_THRESHOLD=10
 ```
   
-`ADMIN_USERNAME`: (optional) your personal telegram username. 
-`ADMIN_LIGHTNING_ADDRESS`: (optional) your personal lightning network address.
+`ADMIN_USERNAME`: (optional) your personal telegram username.  
+`ADMIN_LIGHTNING_ADDRESS`: (optional) your personal lightning network address.  
 `BOT_TOKEN`: (mandatory) the token of your telegram bot.  
 `DEBUG`: (optional) enable/disable debug mode (0 for False, 1 for True).  
 `POOP_THRESHOLD`: (mandatory) minimum number of reaction for deleting a message.
