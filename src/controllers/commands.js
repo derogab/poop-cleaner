@@ -2,7 +2,7 @@
  * Dependencies
  * 
  */
-const info = require("../package.json");
+const info = require("../../package.json");
 const strings = require("../intl/strings");
 
 /**

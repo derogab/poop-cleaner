@@ -2,9 +2,16 @@
   "name": "poop-cleaner",
   "version": "0.1.0",
   "description": "A superhero bot that saves group chats from shitty spam reported by good members",
-  "main": "src/index.js",
+  "main": "bin.js",
+  "bin": "bin.js",
+  "pkg": {
+    "assets": [],
+    "targets": [ "host" ],
+    "outputPath": "./dist"
+  },
   "scripts": {
-    "start": "node ./src/index.js",
+    "build": "pkg .",
+    "start": "node ./bin.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,5 +32,8 @@
     "dotenv": "16.4.5",
     "grammy": "1.22.4",
     "redis": "4.6.13"
+  },
+  "devDependencies": {
+    "@yao-pkg/pkg": "5.11.5"
   }
 }
