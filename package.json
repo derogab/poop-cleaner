@@ -34,6 +34,6 @@
     "redis": "4.6.13"
   },
   "devDependencies": {
-    "@yao-pkg/pkg": "5.11.5"
+    "@yao-pkg/pkg": "5.12.0"
   }
 }
