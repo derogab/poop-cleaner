@@ -16,7 +16,7 @@ RUN npm run build
 
 
 # Production environment
-FROM alpine:3.20
+FROM alpine:3.21
 # Connect repository
 LABEL org.opencontainers.image.source https://github.com/derogab/poop-cleaner
 # Create app directory
