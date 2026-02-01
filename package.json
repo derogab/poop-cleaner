@@ -30,7 +30,7 @@
   "homepage": "https://github.com/derogab/poop-cleaner#readme",
   "dependencies": {
     "dotenv": "17.2.3",
-    "grammy": "1.38.4",
+    "grammy": "1.39.3",
     "redis": "4.7.0"
   },
   "devDependencies": {
