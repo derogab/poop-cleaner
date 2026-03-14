@@ -4,13 +4,15 @@ FROM node:24-alpine AS build
 WORKDIR /app
 # Set environments
 ENV PATH=/app/node_modules/.bin:$PATH
-# Copy package files
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
 COPY package*.json ./
 RUN npm install
 # Copy app
 COPY . .
 # Build bundled app
-RUN mkdir -p dist && esbuild bin.js --bundle --platform=node --outfile=dist/poop-cleaner.js
+RUN npm run build
 
 
 # Production environment
