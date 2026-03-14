@@ -22,6 +22,9 @@ services:
       - poop-cleaner-network  
   # Poop Cleaner App Service
   poop-cleaner-app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
     restart: always
     container_name: poop-cleaner-app
     image: derogab/poop-cleaner:latest
@@ -29,6 +32,6 @@ services:
       - REDIS_HOST=poop-cleaner-data
       - REDIS_PORT=6379
     env_file:
-      - .env
+      - ../.env
     networks:
       - poop-cleaner-network 

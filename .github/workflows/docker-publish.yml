@@ -38,11 +38,11 @@ jobs:
 
       - name: Run tests
         run: |
-          if [ -f docker-compose.test.yml ]; then
-            docker-compose --file docker-compose.test.yml build
-            docker-compose --file docker-compose.test.yml run sut
+          if [ -f docker/docker-compose.test.yml ]; then
+            docker-compose --file docker/docker-compose.test.yml build
+            docker-compose --file docker/docker-compose.test.yml run sut
           else
-            docker build . --file Dockerfile
+            docker build . --file docker/Dockerfile
           fi
 
   # Push.
@@ -104,6 +104,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
+          file: docker/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: ${{ github.event_name != 'pull_request' && startsWith(github.ref, 'refs/tags/v') }} # No PRs and only on TAGs
           tags: ${{ steps.meta.outputs.tags }}
