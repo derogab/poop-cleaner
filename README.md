@@ -40,9 +40,9 @@ POOP_THRESHOLD=10
 `POOP_THRESHOLD`: (mandatory) minimum number of reaction for deleting a message.
 
 ### Usage
-The easiest way to use the bot is via the [docker compose](./docker-compose.yml) file. When ready, run:
+The easiest way to use the bot is via the [docker compose](./docker/docker-compose.yml) file. When ready, run:
 ```
-docker compose up -d 
+docker compose -f docker/docker-compose.yml up -d 
 ```
 
 ### Tip
