@@ -4,13 +4,8 @@
   "description": "A superhero bot that saves group chats from shitty spam reported by good members",
   "main": "bin.js",
   "bin": "bin.js",
-  "pkg": {
-    "assets": [],
-    "targets": [ "host" ],
-    "outputPath": "./dist"
-  },
   "scripts": {
-    "build": "pkg .",
+    "build": "esbuild bin.js --bundle --platform=node --outfile=dist/poop-cleaner.js",
     "start": "node ./bin.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -34,6 +29,6 @@
     "redis": "5.11.0"
   },
   "devDependencies": {
-    "@yao-pkg/pkg": "6.14.1"
+    "esbuild": "^0.25.0"
   }
 }

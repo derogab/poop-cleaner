@@ -1,29 +1,27 @@
 # Build environment
-FROM node:20-alpine AS build
+FROM node:24-alpine AS build
 # Create app directory
 WORKDIR /app
 # Set environments
 ENV PATH=/app/node_modules/.bin:$PATH
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
+# Copy package files
 COPY package*.json ./
 RUN npm install
 # Copy app
 COPY . .
-# Build
-RUN npm run build
+# Build bundled app
+RUN mkdir -p dist && esbuild bin.js --bundle --platform=node --outfile=dist/poop-cleaner.js
 
 
 # Production environment
 FROM alpine:3.23
 # Connect repository
 LABEL org.opencontainers.image.source=https://github.com/derogab/poop-cleaner
+# Install Node.js runtime (much smaller than full Node.js binary)
+RUN apk add --no-cache nodejs
 # Create app directory
 WORKDIR /app
-# Copy app
-COPY --from=build /app/dist/poop-cleaner /app
-# Make executable
-RUN chmod +x /app/poop-cleaner
+# Copy bundled app from build stage
+COPY --from=build /app/dist/poop-cleaner.js /app/
 # Run command 
-CMD ["/app/poop-cleaner"]
+CMD ["node", "/app/poop-cleaner.js"]
