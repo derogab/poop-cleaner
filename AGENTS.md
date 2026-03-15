@@ -21,6 +21,7 @@
 ## How to make changes safely
 - Match the existing language style, module system, formatting, naming, and file organization used by the surrounding code.
 - Prefer small, direct changes over broad refactors.
+- Keep code readable on its own, but add clear comments or docblocks for non-obvious logic so future readers can follow the intent without rediscovering it.
 - If you change user-facing behavior, trace where strings, Markdown formatting, and locale-specific content are defined and keep them consistent.
 - If you add or change configuration, update the example environment setup and any human documentation that explains how to use it.
 - Avoid introducing new dependencies, patterns, or abstractions unless the current code clearly needs them.
