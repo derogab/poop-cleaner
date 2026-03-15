@@ -6,9 +6,10 @@
 - Keep edits scoped to the user's request and preserve existing conventions unless there is a clear reason to improve them.
 
 ## Project shape
-- This project is a compact Node.js Telegram bot with Redis-backed state and Docker-based deployment.
-- Most changes will involve bot commands, reaction handling, configuration, localized strings, or container/runtime setup.
-- Treat it as a small codebase where directness is usually better than abstraction.
+- This project is a small Telegram moderation bot centered on a simple idea: group members can collectively flag unwanted messages through reactions.
+- It is a single-purpose, stateful application rather than a broad platform, so behavior is usually easier to understand by tracing the request flow end to end.
+- Most changes will involve command handling, reaction-driven moderation logic, configuration, localized user-facing text, or runtime/deployment wiring.
+- Treat it as a compact codebase where directness is usually better than abstraction.
 
 ## How to understand the project
 - Start with the human-oriented documentation to learn product intent, setup expectations, and deployment notes.
