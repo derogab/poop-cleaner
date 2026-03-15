@@ -28,6 +28,7 @@
 
 ## Validation workflow
 - Run the most relevant local verification commands exposed by the project scripts.
+- When dependencies change in `package.json`, run `npm install` so the lockfile stays in sync.
 - Use the CI workflow definition as the source of truth for required automated checks.
 - If the nominal test command is a placeholder or intentionally failing, use the next most meaningful build or packaging check instead.
 - For changes involving containers, deployment artifacts, or release packaging, run the same build path used by CI when practical.
