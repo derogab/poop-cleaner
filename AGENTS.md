@@ -37,6 +37,11 @@
 - Never commit populated secret files, real tokens, private addresses, or credentials.
 - Treat changes to configuration shape as user-facing changes that require synchronized documentation updates.
 
+## Documentation upkeep
+- When something changes in the project, check whether related documentation should change too.
+- Review both human-facing and agent-facing documentation whenever behavior, configuration, workflows, or operational expectations change.
+- Keep nearby documents aligned rather than assuming a code change is self-explanatory.
+
 ## Integration awareness
 - Verify assumptions about Telegram behavior from the code paths that handle incoming events and outgoing responses.
 - Preserve any response formatting requirements enforced by the Telegram client library or API contract.
