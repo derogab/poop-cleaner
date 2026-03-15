@@ -135,3 +135,42 @@ test("donate uses configured admin address or falls back to N\/A", async () => {
   assert.match(replies[0].message, /@derogab/);
   assert.equal(replies[0].options.parse_mode, "Markdown");
 });
+
+test("donate falls back to unknown admin and keeps configured address", async () => {
+  const commands = require(commandsPath);
+  const originalEnv = {
+    ADMIN_USERNAME: process.env.ADMIN_USERNAME,
+    ADMIN_LIGHTNING_ADDRESS: process.env.ADMIN_LIGHTNING_ADDRESS,
+  };
+
+  delete process.env.ADMIN_USERNAME;
+  process.env.ADMIN_LIGHTNING_ADDRESS = "boss@ln.example";
+
+  const replies = [];
+  const ctx = {
+    update: {
+      message: {
+        from: {
+          language_code: "en",
+        },
+      },
+    },
+    async reply(message, options) {
+      replies.push({ message, options });
+    },
+  };
+
+  try {
+    await commands.donate(ctx);
+  } finally {
+    for (const [key, value] of Object.entries(originalEnv)) {
+      if (value === undefined) delete process.env[key];
+      else process.env[key] = value;
+    }
+  }
+
+  assert.equal(replies.length, 1);
+  assert.match(replies[0].message, /@unknown/);
+  assert.match(replies[0].message, /`boss@ln\.example`/);
+  assert.equal(replies[0].options.parse_mode, "Markdown");
+});

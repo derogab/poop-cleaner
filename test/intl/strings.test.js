@@ -27,3 +27,14 @@ test("strings.get replaces named placeholders", () => {
   assert.match(message, /`enabled`/);
   assert.match(message, /yes/);
 });
+
+test("strings.get leaves placeholders untouched when params are missing", () => {
+  const message = strings.get("en", "MSG_CONFIGS", {
+    username: "alice",
+  });
+
+  assert.match(message, /@alice/);
+  assert.match(message, /\{threshold\}/);
+  assert.match(message, /\{version\}/);
+  assert.match(message, /\{debug\}/);
+});

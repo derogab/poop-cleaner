@@ -111,3 +111,71 @@ test("index registers commands and starts the bot with redis", async () => {
   ]);
   assert.deepEqual(exitCalls, [0]);
 });
+
+test("index falls back to localhost redis defaults", async () => {
+  const originalEnv = {
+    BOT_TOKEN: process.env.BOT_TOKEN,
+    REDIS_HOST: process.env.REDIS_HOST,
+    REDIS_PORT: process.env.REDIS_PORT,
+  };
+
+  process.env.BOT_TOKEN = "token-456";
+  delete process.env.REDIS_HOST;
+  delete process.env.REDIS_PORT;
+
+  const botState = {
+    token: undefined,
+    startOptions: undefined,
+  };
+
+  class FakeBot {
+    constructor(token) {
+      botState.token = token;
+    }
+
+    command() {}
+
+    on() {}
+
+    start(options) {
+      botState.startOptions = options;
+      return Promise.resolve();
+    }
+
+    stop() {}
+  }
+
+  const data = {
+    async createRedisClient(host, port) {
+      botState.redisConfig = [host, port];
+      return "redis-client";
+    },
+  };
+
+  const index = loadWithMocks(indexPath, {
+    grammy: { Bot: FakeBot },
+    "./controllers/commands": {
+      start() {},
+      help() {},
+      configs() {},
+      donate() {},
+    },
+    "./controllers/core": { onReaction() {} },
+    "./controllers/data": data,
+    "./controllers/logger": { info() {}, warning() {}, error() {} },
+    dotenv: { config() {} },
+  });
+
+  try {
+    await index.execution();
+  } finally {
+    for (const [key, value] of Object.entries(originalEnv)) {
+      if (value === undefined) delete process.env[key];
+      else process.env[key] = value;
+    }
+  }
+
+  assert.equal(botState.token, "token-456");
+  assert.deepEqual(botState.redisConfig, ["localhost", 6379]);
+  assert.deepEqual(botState.startOptions, { allowed_updates: ["message", "message_reaction"] });
+});
