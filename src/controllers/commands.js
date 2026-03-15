@@ -57,7 +57,7 @@ const help = exports.help = async function(ctx) {
 const configs = exports.configs = async function(ctx) {
   // Init message.
   const msg = strings.get(ctx.update.message.from.language_code, 'MSG_CONFIGS', {
-    debug: process.env.DEBUG ? strings.get(ctx.update.message.from.language_code, 'ENABLED') : strings.get(ctx.update.message.from.language_code, 'DISABLED'),
+    debug: process.env.DEBUG && process.env.DEBUG !== "0" ? strings.get(ctx.update.message.from.language_code, 'ENABLED') : strings.get(ctx.update.message.from.language_code, 'DISABLED'),
     username: process.env.ADMIN_USERNAME ? process.env.ADMIN_USERNAME : strings.get(ctx.update.message.from.language_code, 'UNKNOWN'),
     threshold: process.env.POOP_THRESHOLD,
     version: "v" + info.version,

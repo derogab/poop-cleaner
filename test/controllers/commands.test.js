@@ -96,6 +96,48 @@ test("configs uses localized fallbacks for unknown values", async () => {
   assert.equal(replies[0].options.parse_mode, "Markdown");
 });
 
+test("configs treats DEBUG=0 as disabled", async () => {
+  const commands = require(commandsPath);
+  const originalEnv = {
+    DEBUG: process.env.DEBUG,
+    ADMIN_USERNAME: process.env.ADMIN_USERNAME,
+    POOP_THRESHOLD: process.env.POOP_THRESHOLD,
+  };
+
+  process.env.DEBUG = "0";
+  delete process.env.ADMIN_USERNAME;
+  process.env.POOP_THRESHOLD = "3";
+
+  const replies = [];
+  const ctx = {
+    update: {
+      message: {
+        from: {
+          language_code: "en",
+          username: "random-user",
+        },
+      },
+    },
+    async reply(message, options) {
+      replies.push({ message, options });
+    },
+  };
+
+  try {
+    await commands.configs(ctx);
+  } finally {
+    for (const [key, value] of Object.entries(originalEnv)) {
+      if (value === undefined) delete process.env[key];
+      else process.env[key] = value;
+    }
+  }
+
+  assert.equal(replies.length, 1);
+  assert.match(replies[0].message, /disabled/);
+  assert.doesNotMatch(replies[0].message, /enabled/);
+  assert.doesNotMatch(replies[0].message, /✔️/);
+});
+
 test("donate uses configured admin address or falls back to N\/A", async () => {
   const commands = require(commandsPath);
   const originalEnv = {
