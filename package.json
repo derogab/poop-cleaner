@@ -27,7 +27,7 @@
   "dependencies": {
     "dotenv": "17.4.2",
     "grammy": "1.43.0",
-    "redis": "5.12.1"
+    "redis": "6.0.0"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "4.1.8",
