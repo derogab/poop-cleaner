@@ -5,7 +5,7 @@
   "main": "bin.js",
   "bin": "bin.js",
   "scripts": {
-    "build": "esbuild bin.js --bundle --platform=node --outfile=dist/poop-cleaner.js",
+    "build": "esbuild bin.js --bundle --platform=node --keep-names --outfile=dist/poop-cleaner.js",
     "start": "node ./bin.js",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage"
