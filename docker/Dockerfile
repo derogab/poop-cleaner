@@ -1,5 +1,5 @@
 # Build environment
-FROM node:24-alpine AS build
+FROM node:24-alpine3.24 AS build
 # Create app directory
 WORKDIR /app
 # Set environments
@@ -16,7 +16,7 @@ RUN npm run build
 
 
 # Production environment
-FROM alpine:3.23
+FROM alpine:3.24
 # Connect repository
 LABEL org.opencontainers.image.source=https://github.com/derogab/poop-cleaner
 # Install Node.js runtime (much smaller than full Node.js binary)
