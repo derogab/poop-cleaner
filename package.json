@@ -30,8 +30,8 @@
     "redis": "6.0.1"
   },
   "devDependencies": {
-    "@vitest/coverage-v8": "4.1.8",
+    "@vitest/coverage-v8": "4.1.10",
     "esbuild": "0.28.1",
-    "vitest": "4.1.8"
+    "vitest": "4.1.10"
   }
 }
