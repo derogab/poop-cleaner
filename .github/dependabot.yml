@@ -11,6 +11,16 @@ updates:
       - 'derogab'
     labels:
       - 'dependencies'
+    groups:
+      github-actions-minor:
+        update-types:
+          - 'minor'
+      github-actions-patch:
+        update-types:
+          - 'patch'
+    ignore:
+      - dependency-name: '*'
+        update-types: ['version-update:semver-major']
 
   # Maintain dependencies for NPM
   - package-ecosystem: 'npm'
@@ -22,6 +32,16 @@ updates:
       - 'derogab'
     labels:
       - 'dependencies'
+    groups:
+      npm-minor:
+        update-types:
+          - 'minor'
+      npm-patch:
+        update-types:
+          - 'patch'
+    ignore:
+      - dependency-name: '*'
+        update-types: ['version-update:semver-major']
 
   # Maintain dependencies for Docker
   - package-ecosystem: 'docker'
@@ -33,3 +53,13 @@ updates:
       - 'derogab'
     labels:
       - 'dependencies'
+    groups:
+      docker-minor:
+        update-types:
+          - 'minor'
+      docker-patch:
+        update-types:
+          - 'patch'
+    ignore:
+      - dependency-name: '*'
+        update-types: ['version-update:semver-major']
