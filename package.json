@@ -32,6 +32,6 @@
   "devDependencies": {
     "@vitest/coverage-v8": "4.1.8",
     "esbuild": "0.28.1",
-    "vitest": "4.1.8"
+    "vitest": "4.1.10"
   }
 }
