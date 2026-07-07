@@ -26,8 +26,8 @@
   "homepage": "https://github.com/derogab/poop-cleaner#readme",
   "dependencies": {
     "dotenv": "17.4.2",
-    "grammy": "1.43.0",
-    "redis": "6.0.1"
+    "grammy": "1.44.0",
+    "redis": "6.1.0"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "4.1.10",
